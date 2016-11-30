@@ -1,0 +1,14 @@
+.page-header
+  h1 二次元バーコード手順書一覧
+
+ul.list-group
+  - tejuns.each_with_index do |tejun, i|
+    a.list-group-item href="/#{tejun['name']}"
+      .row
+        .col-xs-1
+          = i + 1
+        .col-xs-3
+          = tejun['name']
+        .col-xs-8
+          = tejun['description']
+

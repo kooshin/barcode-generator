@@ -1,0 +1,19 @@
+- name: tejun1-config
+  description: ルータにVRFとIPアドレスを割当
+  commands:
+    - "telnet 192.168.88.5\ncisco\ncisco"
+    - "enable\ncisco\nterminal length 0"
+    - "show run vrf VRF1\nshow run int Vlan101"
+    - "conf t\n vrf definition VRF1\n  address-family ipv4\n interface Vlan101\n  vrf forwarding VRF1\n  ip address 192.168.1.1 255.255.255.0\n  no shut\nend"
+    - "show run vrf VRF1\nshow run int Vlan101"
+    - "exit"
+- name: tejun1-unconfig
+  description: ルータにVRFとIPアドレスの割当を解除
+  commands:
+    - "telnet 192.168.88.5\ncisco\ncisco"
+    - "enable\ncisco\nterminal length 0"
+    - "show run vrf VRF1\nshow run int Vlan101"
+    - "conf t\n interface Vlan101\n  shutdown\n no interface Vlan101\n no vrf definition VRF1\nend"
+    - "show run vrf VRF1\nshow run int Vlan101"
+    - "exit"
+
